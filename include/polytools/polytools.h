@@ -11,6 +11,8 @@
 #include <stdlib.h>
 #include <vector>
 
+namespace polytools {
+
 /*
 * Fits a polynomial of degree, deg, to the independent, x, and 
 * dependent, y, data. Returns the polynomial coefficients in
@@ -29,5 +31,7 @@ float polyval(const std::vector<float> &p, float x);
 * values, x. Returns a vector of evaluated values.
 */
 std::vector<float> polyval(const std::vector<float> &p, const std::vector<float> &x);
+
+} // polytools
 
 #endif

@@ -10,6 +10,8 @@
 #include "Eigen/Dense"
 #include "Eigen/QR"
 
+namespace polytools {
+  
 std::vector<float> polyfit(std::vector<float> x, std::vector<float> y, unsigned int deg)
 {
   std::vector<float> ret;
@@ -65,3 +67,5 @@ std::vector<float> polyval(const std::vector<float> &p, const std::vector<float>
   }
   return y;
 }
+
+} // polytools
