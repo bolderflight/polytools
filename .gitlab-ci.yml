@@ -1,23 +1,23 @@
 stages:
-    - build
-    - test
+  - build
+  - test
   
-  Compile:
-    stage: build
-    tags:
-      - bfs
-    script:
-      - mkdir build
-      - cd build
-      - cmake ..
-      - make
-    artifacts:
-      paths:
-        - build/polytools_test
+Compile:
+  stage: build
+  tags:
+    - bfs
+  script:
+    - mkdir build
+    - cd build
+    - cmake ..
+    - make
+  artifacts:
+    paths:
+      - build/polytools_test
   
-  Test Welford:
-    stage: test
-    tags:
-      - bfs
-    script:
-      - ./build/polytools_test
+Test Welford:
+  stage: test
+  tags:
+    - bfs
+  script:
+    - ./build/polytools_test
