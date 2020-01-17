@@ -15,7 +15,7 @@ Compile:
     paths:
       - build/polytools_test
   
-Test Welford:
+Test Polytools:
   stage: test
   tags:
     - bfs
