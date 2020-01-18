@@ -11,9 +11,9 @@
 #include "Eigen/QR"
 
 namespace polytools {
-  
-std::vector<float> polyfit(std::vector<float> x, std::vector<float> y, unsigned int deg)
-{
+
+std::vector<float> polyfit(std::vector<float> x, std::vector<float> y,
+                          unsigned int deg) {
   std::vector<float> ret;
   if (x.size() != y.size()) {
     return ret;
@@ -38,8 +38,7 @@ std::vector<float> polyfit(std::vector<float> x, std::vector<float> y, unsigned 
   return ret;
 }
 
-float polyval(const std::vector<float> &p, float x)
-{
+float polyval(const std::vector<float> &p, float x) {
   if (p.size() > 0) {
     float y = p[0];
     for (unsigned int i = 1; i < p.size(); i++) {
@@ -51,8 +50,8 @@ float polyval(const std::vector<float> &p, float x)
   }
 }
 
-std::vector<float> polyval(const std::vector<float> &p, const std::vector<float> &x)
-{
+std::vector<float> polyval(const std::vector<float> &p,
+                          const std::vector<float> &x) {
   std::vector<float> y;
   if (p.size() > 0) {
     y.resize(x.size(), 0.0f);
@@ -68,4 +67,4 @@ std::vector<float> polyval(const std::vector<float> &p, const std::vector<float>
   return y;
 }
 
-} // polytools
+}  // namespace polytools

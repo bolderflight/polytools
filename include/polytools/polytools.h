@@ -5,8 +5,8 @@
 * Copyright (c) 2019 Bolder Flight Systems
 */
 
-#ifndef POLYTOOLS_H
-#define POLYTOOLS_H
+#ifndef INCLUDE_POLYTOOLS_POLYTOOLS_H_
+#define INCLUDE_POLYTOOLS_POLYTOOLS_H_
 
 #include <stdlib.h>
 #include <vector>
@@ -18,7 +18,8 @@ namespace polytools {
 * dependent, y, data. Returns the polynomial coefficients in
 * order of descending power.
 */
-std::vector<float> polyfit(std::vector<float> x, std::vector<float> y, unsigned int deg);
+std::vector<float> polyfit(std::vector<float> x, std::vector<float> y,
+                          unsigned int deg);
 /*
 * Performs a polynomial evaluation given a vector of polynomial
 * coefficients in descending order, p, and an input value, x. 
@@ -30,8 +31,9 @@ float polyval(const std::vector<float> &p, float x);
 * coefficients in descending order, p, and a vector of input
 * values, x. Returns a vector of evaluated values.
 */
-std::vector<float> polyval(const std::vector<float> &p, const std::vector<float> &x);
+std::vector<float> polyval(const std::vector<float> &p,
+                          const std::vector<float> &x);
 
-} // polytools
+}  // namespace polytools
 
-#endif
+#endif  // INCLUDE_POLYTOOLS_POLYTOOLS_H_

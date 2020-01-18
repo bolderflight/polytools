@@ -1,7 +1,16 @@
 stages:
+  - lint
   - build
   - test
-  
+
+Lint:
+  stage: lint
+  tags:
+    - bfs
+  script: 
+    - cpplint.py --verbose=0 src/polytools/polytools.cc
+    - cpplint.py --verbose=0 include/polytools/polytools.h
+
 Compile:
   stage: build
   tags:
