@@ -25,21 +25,21 @@ This will build the library, an example executable called *polytools_example*, a
 This library is within the namespace *polytools*.
 
 ## Functions
-**std::vector&ltfloat&gt polyfit(std::vector&ltfloat&gt x, std::vector&ltfloat&gt y, unsigned int deg)** polyfit returns the coefficients for a polynomial of degree, *deg*, that best fit the independent, *x*, and dependent, *y*, data. The coefficients are given in order of descending power and the length of the vector is deg + 1. The data vectors *x* and *y* should be of equal length. High order polynomials do not necessarily lead to a better fit and may be oscillatory, leading to a worse solution. Check the returned polynomial values and be cautious if coefficients are nearly zero.
+**std::vector&lt;float&gt; polyfit(std::vector&lt;float&gt; x, std::vector&lt;float&gt; y, unsigned int deg)** polyfit returns the coefficients for a polynomial of degree, *deg*, that best fit the independent, *x*, and dependent, *y*, data. The coefficients are given in order of descending power and the length of the vector is deg + 1. The data vectors *x* and *y* should be of equal length. High order polynomials do not necessarily lead to a better fit and may be oscillatory, leading to a worse solution. Check the returned polynomial values and be cautious if coefficients are nearly zero.
 
 ```C++
 std::vector<float> x = {1, 2, 3, 4};
 std::vector<float> y = {2, 4, 6, 8};
 std::vector<float> p = polytools::polyfit(x, y, 1);
 ```
-**float polyval(const std::vector&ltfloat&gt &p, float x)** polyval evaluates the coefficients *p* of a polynomial at point *x*. The coefficients should be given in order of descending power.
+**float polyval(const std::vector&lt;float&gt; &p, float x)** polyval evaluates the coefficients *p* of a polynomial at point *x*. The coefficients should be given in order of descending power.
 
 ```C++
 std::vector<float> p = {2, 1};
 float y = polytools::polyval(p, 2.0f); // y = 5
 ```
 
-**std::vector&ltfloat&gt polyval(const std::vector&ltfloat&gt &p, const std::vector&ltfloat&gt &x)** polyval evaluates the coefficients *p* of a polynomial at a vector of points *x*, returning a vector of the results. The coefficients should be given in order of descending power.
+**std::vector&lt;float&gt; polyval(const std::vector&lt;float&gt; &p, const std::vector&lt;float&gt; &x)** polyval evaluates the coefficients *p* of a polynomial at a vector of points *x*, returning a vector of the results. The coefficients should be given in order of descending power.
 
 ```C++
 std::vector<float> p = {2, 1};
