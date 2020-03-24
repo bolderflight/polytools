@@ -9,20 +9,18 @@ project(PolyTools
 include(FetchContent)
 FetchContent_Declare(
 	eigen
-	GIT_REPOSITORY https://gitlab.com/libeigen/eigen.git
+	GIT_REPOSITORY git@gitlab.com:bolderflight/software/eigen.git
 )
-FetchContent_GetProperties(eigen)
-if(NOT eigen_POPULATED)
-  # Fetch the content using previously declared details
-  FetchContent_Populate(eigen)
-  # Bring the populated content into the build
-	include_directories(${eigen_SOURCE_DIR})
-endif()
-
+FetchContent_MakeAvailable(eigen)
 # Add the library target
 add_library(polytools
 	include/polytools/polytools.h
  	src/polytools/polytools.cc
+)
+# Link libraries
+target_link_libraries(polytools
+	PRIVATE
+		eigen
 )
 # Setup include directories 
 target_include_directories(polytools PUBLIC 
