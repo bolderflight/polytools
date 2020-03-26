@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.0.4
+
+- Updated Eigen to point to Bolder Flight repo
+- Updated Google Test to use specific version (1.10)
+
 ## v1.0.3
 
 - Updated documentation to include license file, changelog, and contribution guide
