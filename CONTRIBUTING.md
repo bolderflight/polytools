@@ -51,9 +51,7 @@ Tests are run using the [Google Test framework](https://github.com/google/google
 Linting tests check for conformance to the style guide - analyzing the code for potential errors and leading to better readibility. [cpplint](https://raw.githubusercontent.com/google/styleguide/gh-pages/cpplint/cpplint.py) should be used to conduct linting tests with verbosity level 0.
 
 #### Build
-Libraries, example code, and tests should be compiled with CMake without error. We typically use CMake with an AMD64 Linux target for general libraries. CMake should be [built from source](https://github.com/Kitware/CMake) and gcc compilers available on the target system. A [Docker](https://hub.docker.com/r/flybrianfly/gcc-cmake) is available to ease this process.
-
-Executables targetting embedded hardware should use the [core library](https://gitlab.com/bolderflight/software/core) as a dependency, which includes microprocessor startup code and CMake cross-compile toolchain instructions. The [GNU ARM Embedded Toolchain](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads) needs to be installed build embedded software. Again, a [Docker](https://hub.docker.com/r/flybrianfly/gcc-cmake) is available to ease this process.
+Libraries, example code, and tests should be compiled with CMake without error. We typically use CMake with an AMD64 Linux target for general libraries. CMake should be [built from source](https://github.com/Kitware/CMake) and gcc compilers available on the target system.
 
 #### Inputs
 Test all parameters against unexpected values, such as NULL inputs, buffer overflows, and zero or negative values. Try to capture all potential combinations of malformed inputs to ensure that your code is protecting against these. Assume that your fellow developers will not read your documentation and will try to use your code with incorrect parameters.
