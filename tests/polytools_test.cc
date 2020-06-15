@@ -12,21 +12,21 @@
 /* Test polyfit with zero inputs */
 TEST(Polyfit, ZeroInput) {
   std::vector<float> x, y;
-  std::vector<float> p = polytools::polyfit(x, y, 0);
+  std::vector<float> p = polytools::polyfit(x, y, 0.0f);
   EXPECT_EQ(0, p.size());
 }
 /* Test polyfit, mismatched input sizes */
 TEST(Polyfit, InputSize) {
   std::vector<float> x = {1, 2, 3};
   std::vector<float> y = {1, 2};
-  std::vector<float> p = polytools::polyfit(x, y, 0);
+  std::vector<float> p = polytools::polyfit(x, y, 0.0f);
   EXPECT_EQ(0, p.size());
 }
 /* Test polyfit linear */
 TEST(Polyfit, Linear) {
   std::vector<float> x = {1, 2, 3, 4};
   std::vector<float> y = {2, 4, 6, 8};
-  std::vector<float> p = polytools::polyfit(x, y, 1);
+  std::vector<float> p = polytools::polyfit(x, y, 1.0f);
   EXPECT_EQ(2, p.size());
   EXPECT_FLOAT_EQ(2, p[0]);
   EXPECT_FLOAT_EQ(0, p[1]);
@@ -34,19 +34,19 @@ TEST(Polyfit, Linear) {
 /* Test polyval with zero inputs */
 TEST(Polyval, ZeroInput) {
   std::vector<float> p;
-  float y = polytools::polyval(p, 0);
+  float y = polytools::polyval(p, 0.0f);
   EXPECT_FLOAT_EQ(0, y);
 }
 /* Test polyval bias */
 TEST(Polyval, Bias) {
   std::vector<float> p = {5};
-  float y = polytools::polyval(p, 99);
+  float y = polytools::polyval(p, 99.0f);
   EXPECT_FLOAT_EQ(5, y);
 }
 /* Test polyval linear */
 TEST(Polyval, Linear) {
   std::vector<float> p = {2, 1};
-  float y = polytools::polyval(p, 4);
+  float y = polytools::polyval(p, 4.0f);
   EXPECT_FLOAT_EQ(9, y);
 }
 /* Test polyval vector with zero inputs */

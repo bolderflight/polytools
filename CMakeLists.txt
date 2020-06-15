@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.13)
 # Project information
 project(PolyTools
-  VERSION 1.0
+  VERSION 2.0
   DESCRIPTION "Polynomial tools; polyfit and polyval."
-  LANGUAGES C CXX
+  LANGUAGES CXX
 )
 # Fetch eigen
 include(FetchContent)
@@ -14,31 +14,38 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(eigen)
 # Add the library target
-add_library(polytools
-	include/polytools/polytools.h
- 	src/polytools/polytools.cc
-)
+add_library(polytools INTERFACE)
 # Link libraries
 target_link_libraries(polytools
-	PRIVATE
+	INTERFACE
 		eigen
 )
 # Setup include directories 
-target_include_directories(polytools PUBLIC 
-	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
- 	$<INSTALL_INTERFACE:include>
+target_include_directories(polytools INTERFACE include/
 )
 # Example and unit testing if this project is built separately
 if (PROJECT_NAME STREQUAL CMAKE_PROJECT_NAME)
 	# Add the example target
-	add_executable(polytools_example examples/polytools_example.cc)
+	add_executable(polytools_array examples/polytools_array.cc)
 	# Add the includes
-	target_include_directories(polytools_example PUBLIC 
+	target_include_directories(polytools_array PUBLIC 
+		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+		$<INSTALL_INTERFACE:include>
+	)
+	# Link libraries to the example target
+	target_link_libraries(polytools_array
+		PRIVATE 
+			polytools
+	)
+	# Add the example target
+	add_executable(polytools_vector examples/polytools_vector.cc)
+	# Add the includes
+	target_include_directories(polytools_vector PUBLIC 
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 		$<INSTALL_INTERFACE:include>
 	)
 	# Link libraries to the test target
-	target_link_libraries(polytools_example
+	target_link_libraries(polytools_vector
 		PRIVATE 
 			polytools
 	)
