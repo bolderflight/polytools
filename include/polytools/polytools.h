@@ -25,7 +25,7 @@ namespace polytools {
 * order of descending power.
 */
 template<int DEG, typename TYPE, std::size_t ARRAY_SIZE>
-std::array<TYPE, DEG + 1> polyfit(const std::array<TYPE, ARRAY_SIZE> &x, 
+std::array<TYPE, DEG + 1> polyfit(const std::array<TYPE, ARRAY_SIZE> &x,
                                   const std::array<TYPE, ARRAY_SIZE> &y) {
   static_assert(DEG >= 0, "Polyfit polynomial degree less than 0");
   std::array<TYPE, DEG + 1> ret;
@@ -48,13 +48,13 @@ std::array<TYPE, DEG + 1> polyfit(const std::array<TYPE, ARRAY_SIZE> &x,
   return ret;
 }
 template<typename TYPE>
-std::vector<TYPE> polyfit(const std::vector<TYPE> &x, 
+std::vector<TYPE> polyfit(const std::vector<TYPE> &x,
                           const std::vector<TYPE> &y,
                           int deg) {
   std::vector<TYPE> ret;
 
-  if ((deg < 0) || 
-     (x.size() != y.size()) || 
+  if ((deg < 0) ||
+     (x.size() != y.size()) ||
      ((x.size() == 0) || (y.size() == 0))) {
     return ret;
   }
@@ -124,7 +124,7 @@ std::array<TYPE, SIZE_X> polyval(const std::array<TYPE, SIZE_P> &p,
         y[i] = y[i] * x[i] + p[j];
       }
     }
-  } 
+  }
   return y;
 }
 /*
@@ -143,7 +143,7 @@ std::vector<TYPE> polyval(const std::vector<TYPE> &p,
         y[i] = y[i] * x[i] + p[j];
       }
     }
-  } 
+  }
   return y;
 }
 
