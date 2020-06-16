@@ -1,5 +1,8 @@
 # Changelog
 
+## v2.0.1
+- Updated contributing guide.
+
 ## v2.0.0
 - Updated API to include std::array based functions to support static memory allocation in addition to the std::vector based functions
 - Used templates to support multiple variable types (i.e. float, double, int, etc)
