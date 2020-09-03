@@ -8,9 +8,6 @@
 #ifndef INCLUDE_POLYTOOLS_POLYTOOLS_H_
 #define INCLUDE_POLYTOOLS_POLYTOOLS_H_
 
-#include <stdlib.h>
-#include <cstdint>
-#include <iostream>
 #include <array>
 #include <vector>
 #include "Eigen/Core"
