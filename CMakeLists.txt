@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 # Project information
 project(PolyTools
-  VERSION 1.0.2
+  VERSION 1.0.3
   DESCRIPTION "Polynomial tools; polyfit and polyval."
   LANGUAGES CXX
 )
@@ -9,8 +9,8 @@ project(PolyTools
 include(FetchContent)
 FetchContent_Declare(
 	eigen
-	GIT_REPOSITORY 	git@gitlab.com:bolderflight/software/eigen.git
-	GIT_TAG					v1.0.0
+	GIT_REPOSITORY	https://gitlab.com/bolderflight/software/eigen.git
+	GIT_TAG			v1.0.0
 )
 FetchContent_MakeAvailable(eigen)
 # Add the library target
