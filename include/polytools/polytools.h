@@ -72,6 +72,24 @@ std::vector<TYPE> polyfit(const std::vector<TYPE> &x,
   return ret;
 }
 /*
+* Performs a polynomial evaluation given a C-style array (pointer & length) 
+* of polynomial coefficients in descending order, p, and an input value, x. 
+* Returns the evaluated value.
+*/
+template<typename TYPE>
+TYPE polyval(TYPE *p, std::size_t len, TYPE x) {
+  if (!p) {return 0;}
+  if (len > 0) {
+    TYPE y = p[0];
+    for (std::size_t i = 1; i < len; i++) {
+      y = y * x + p[i];
+    }
+    return y;
+  } else {
+    return 0;
+  }
+}
+/*
 * Performs a polynomial evaluation given an array of polynomial
 * coefficients in descending order, p, and an input value, x. 
 * Returns the evaluated value.

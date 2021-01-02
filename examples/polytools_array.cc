@@ -17,7 +17,7 @@ int main()
   for (unsigned int i = 0; i < x.size(); i++) {
     std::cout << "x: " << x[i] << " y: " << y[i] << std::endl;
   }
-  /* Find a pdoublemial fit to the data */
+  /* Find a polynomial fit to the data */
   std::array<float, 2> p = polytools::polyfit<1>(x, y);
   /* Print the polynomial coefficients */
   for (const auto &coeff : p) {
@@ -25,6 +25,9 @@ int main()
   }
   /* Evaluate the polynomial at x[0] */
   float output = polytools::polyval(p, x[0]);
+  std::cout << "Polynomial Evaluation at x = " << x[0] << ": " << output << std::endl;
+  /* Evaluate the polynomial at x[0] using c-style input */
+  output = polytools::polyval(p.data(), p.size(), x[0]);
   std::cout << "Polynomial Evaluation at x = " << x[0] << ": " << output << std::endl;
   /* Evaluate the polynomial for the x vector */
   std::array<float, 4> outputs = polytools::polyval(p, x);
