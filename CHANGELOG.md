@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.1.3
+- Added a c-style polyval where the polynomial coefficient array is passed as a pointer and a length
+
 ## v1.0.3
 - Updated contributing
 - Modified *fetch_content* from ssh to https for dependencies

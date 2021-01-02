@@ -43,6 +43,13 @@ std::array<double, 2> p = {2, 1};
 double y = polytools::polyval(p, 2.0); // y = 5
 ```
 
+**typename polyval(typename &ast;p, std::size_t len, typename x)** polyval evaluates the coefficients *p* of a polynomial at point *x*. The coefficients are given by passing a pointer to the coefficient array and the length of the array. The coefficients should be given in order of descending power.
+
+```C++
+std::array<double, 2> p = {2, 1};
+double y = polytools::polyval(p.data(), p.size(), 2.0); // y = 5
+```
+
 **std::array polyval(const std::array &p, const std::array &x)** polyval evaluates the coefficients *p* of a polynomial at a vector of points *x*, returning a vector of the results. The coefficients should be given in order of descending power.
 
 ```C++

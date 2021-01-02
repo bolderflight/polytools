@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 # Project information
 project(PolyTools
-  VERSION 1.0.3
+  VERSION 1.1.3
   DESCRIPTION "Polynomial tools; polyfit and polyval."
   LANGUAGES CXX
 )
