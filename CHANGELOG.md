@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.1.4
+- Updated CMakeLists to use GitHub for eigen repo
+- Updated CONTRIBUTING to point to the contributing repo
+
 ## v1.1.3
 - Added a c-style polyval where the polynomial coefficient array is passed as a pointer and a length
 
