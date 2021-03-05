@@ -1,5 +1,8 @@
 # Changelog
 
+## v2.0.0
+- Updated to namespace *bfs*
+
 ## v1.1.4
 - Updated CMakeLists to use GitHub for eigen repo
 - Updated CONTRIBUTING to point to the contributing repo

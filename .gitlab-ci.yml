@@ -8,7 +8,7 @@ Lint:
   tags:
     - bfs
   script: 
-    - cpplint.py --verbose=0 include/polytools/polytools.h
+    - cpplint --verbose=0 include/polytools/polytools.h
 
 Compile:
   stage: build
