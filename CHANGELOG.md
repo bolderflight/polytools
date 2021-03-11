@@ -1,5 +1,8 @@
 # Changelog
 
+## v2.0.1
+- Fixed the const-ness of the C style polyval
+
 ## v2.0.0
 - Updated to namespace *bfs*
 

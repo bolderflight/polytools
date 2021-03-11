@@ -95,7 +95,7 @@ std::vector<TYPE> polyfit(const std::vector<TYPE> &x,
 * Returns the evaluated value.
 */
 template<typename TYPE>
-TYPE polyval(TYPE *p, std::size_t len, TYPE x) {
+TYPE polyval(const TYPE * const p, const std::size_t len, const TYPE x) {
   if (!p) {return 0;}
   if (len > 0) {
     TYPE y = p[0];
