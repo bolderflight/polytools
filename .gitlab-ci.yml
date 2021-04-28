@@ -17,7 +17,7 @@ Compile:
   script:
     - mkdir build
     - cd build
-    - cmake ..
+    - cmake .. -DCMAKE_CXX_COMPILER=g++-10
     - make
   artifacts:
     paths:
