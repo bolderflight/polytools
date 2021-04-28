@@ -24,30 +24,24 @@
 */
 
 #include "polytools/polytools.h"
+#include <array>
 #include <vector>
 #include <iostream>
 
-int main()
-{
-  /* Independent and dependent data */
-  std::vector<float> x = {1, 2, 3, 4};
+int main() {
+  /* Polyfit */
+  std::array<float, 4> x = {1, 2, 3, 4};
   std::vector<float> y = {2, 4, 6, 8};
-  for (unsigned int i = 0; i < x.size(); i++) {
-    std::cout << "x: " << x[i] << " y: " << y[i] << std::endl;
+  std::vector<float> ret = bfs::polyfit<float>(x, y, 1);
+  for (auto const & coef : ret) {
+    std::cout << "polyfit coef: " << coef << std::endl;
   }
-  /* Find a polynomial fit to the data */
-  std::vector<float> p = bfs::polyfit(x, y, 1);
-  /* Print the polynomial coefficients */
-  for (const auto &coeff : p) {
-    std::cout << "Polynomial Coefficient: " << coeff << std::endl;
-  }
-  /* Evaluate the polynomial at x[0] */
-  float output = bfs::polyval(p, x[0]);
-  std::cout << "Polynomial Evaluation at x = " << x[0] << ": " << output << std::endl;
-  /* Evaluate the polynomial for the x vector */
-  std::vector<float> outputs = bfs::polyval(p, x);
-  for (unsigned int i = 1; i < outputs.size(); i++) {
-    std::cout << "Polynomial Evaluation at x = " << x[i] << ": " << outputs[i] << std::endl;
-  }
-  return 0;
+  /* Polynomial coefficients using std::array, std::vectory, and c-style */
+  std::array<float, 2> p_array = {2, 0};
+  std::vector<float> p_vect = {3, 1};
+  float p_c_style[] = {4, 2};
+  /* Evaluate x = 2 with each array of coefficients */
+  std::cout << "polyval {2, 0} at x = 2: " << bfs::polyval<float>(p_array, 2) << std::endl;
+  std::cout << "polyval {3, 1} at x = 2: " << bfs::polyval<float>(p_vect, 2) << std::endl;
+  std::cout << "polyval {4, 2} at x = 2: " << bfs::polyval<float>(p_c_style, 2) << std::endl;
 }
