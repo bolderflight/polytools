@@ -1,5 +1,8 @@
 # Changelog
 
+## v3.0.1
+- Added a static assert to only support floating point types
+
 ## v3.0.0
 - Updated to use std::span, so only 1 version of polyfit and polyval needs to be maintained
 

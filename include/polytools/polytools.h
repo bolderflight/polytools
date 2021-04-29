@@ -28,6 +28,7 @@
 
 #include <span>
 #include <vector>
+#include <type_traits>
 #include "Eigen/Core"
 #include "Eigen/Dense"
 #include "Eigen/QR"
@@ -44,6 +45,8 @@ template<typename T>
 std::vector<T> polyfit(std::span<const T> x,
                        std::span<const T> y,
                        const int deg) {
+  static_assert(std::is_floating_point<T>::value,
+              "Only floating point types supported");
   std::vector<T> ret;
   if ((deg < 0) ||
      (x.size() != y.size()) ||
@@ -69,6 +72,8 @@ std::vector<T> polyfit(std::span<const T> x,
 /* Evaluates the coefficients p at point x */
 template<typename T>
 T polyval(std::span<const T> p, const T x) {
+  static_assert(std::is_floating_point<T>::value,
+                "Only floating point types supported");
   T y = 0;
   if (p.size() > 0) {
     y = p[0];
