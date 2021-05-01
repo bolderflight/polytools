@@ -1,5 +1,8 @@
 # Changelog
 
+## v3.0.2
+- Updated the version of Eigen
+
 ## v3.0.1
 - Added a static assert to only support floating point types
 
