@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 # Project information
 project(PolyTools
-  VERSION 3.0.2
+  VERSION 4.0.0
   DESCRIPTION  "Polynomial tools; polyfit and polyval."
   LANGUAGES CXX
 )
@@ -10,7 +10,7 @@ include(FetchContent)
 FetchContent_Declare(
 	eigen
 	GIT_REPOSITORY https://github.com/bolderflight/eigen.git
-	GIT_TAG v2.0.0
+	GIT_TAG v3.0.1
 )
 FetchContent_MakeAvailable(eigen)
 # Add the library target
@@ -21,17 +21,13 @@ target_link_libraries(polytools
 		eigen
 )
 # Setup include directories 
-target_include_directories(polytools INTERFACE include/
-)
-# Compile options
-add_compile_options(
-	$<$<COMPILE_LANGUAGE:CXX>:-std=c++20>
+target_include_directories(polytools INTERFACE src/
 )
 
 # Example and unit testing if this project is built separately
 if (PROJECT_NAME STREQUAL CMAKE_PROJECT_NAME)
 	# Add the example target
-	add_executable(polytools_example examples/polytools_example.cc)
+	add_executable(polytools_example examples/cmake/polytools_example.cc)
 	# Add the includes
 	target_include_directories(polytools_example PUBLIC 
 		$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>

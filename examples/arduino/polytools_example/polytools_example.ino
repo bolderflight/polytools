@@ -23,25 +23,30 @@
 * IN THE SOFTWARE.
 */
 
-#include "polytools/polytools.h"
+#include "polytools.h"
 #include <array>
-#include <vector>
-#include <iostream>
 
-int main() {
-  /* Polyfit */
+void setup() {
+  Serial.begin(115200);
+  while (!Serial) {}
+  /* Polyfit independent (x) and dependent (y) data */
   std::array<float, 4> x = {1, 2, 3, 4};
-  std::vector<float> y = {2, 4, 6, 8};
-  std::vector<float> ret = bfs::polyfit<float>(x, y, 1);
-  for (auto const & coef : ret) {
-    std::cout << "polyfit coef: " << coef << std::endl;
+  std::array<float, 4> y = {2, 4, 6, 8};
+  /*
+  * Templated polynomial degree, returns an array of polynomial coefficients,
+  * length degree + 1, in order of descending power.
+  */
+  std::array<float, 2> p = bfs::polyfit<1>(x, y);
+  for (std::size_t i = 0; i < p.size(); i++) {
+    Serial.print("polyfit coef: ");
+    Serial.println(p[i]);
   }
-  /* Polynomial coefficients using std::array, std::vectory, and c-style */
-  std::array<float, 2> p_array = {2, 0};
-  std::vector<float> p_vect = {3, 1};
-  float p_c_style[] = {4, 2};
-  /* Evaluate x = 2 with each array of coefficients */
-  std::cout << "polyval {2, 0} at x = 2: " << bfs::polyval<float>(p_array, 2) << std::endl;
-  std::cout << "polyval {3, 1} at x = 2: " << bfs::polyval<float>(p_vect, 2) << std::endl;
-  std::cout << "polyval {4, 2} at x = 2: " << bfs::polyval<float>(p_c_style, 2) << std::endl;
+  /* Evaluate at x = 2 using std::array */
+  Serial.print("polyval at x = 2: ");
+  Serial.println(bfs::polyval(p, 2.0f));
+  /* Evaluate at x = 3 using c-style array */
+  Serial.print("polyval at x = 3: ");
+  Serial.println(bfs::polyval(p.data(), p.size(), 3.0f));
 }
+
+void loop() {}

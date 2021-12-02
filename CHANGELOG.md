@@ -1,5 +1,10 @@
 # Changelog
 
+## v4.0.0
+- Updated directory structure to support Arduino in addition to CMake builds
+- Added an Arduino example
+- Updated README
+
 ## v3.0.2
 - Updated the version of Eigen
 

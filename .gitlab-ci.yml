@@ -8,7 +8,7 @@ Lint:
   tags:
     - bfs
   script: 
-    - cpplint --verbose=0 include/polytools/polytools.h
+    - cpplint --verbose=0 src/polytools.h
 
 Compile:
   stage: build
@@ -17,7 +17,7 @@ Compile:
   script:
     - mkdir build
     - cd build
-    - cmake .. -DCMAKE_CXX_COMPILER=g++-10
+    - cmake ..
     - make
   artifacts:
     paths:
