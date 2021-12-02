@@ -10,7 +10,7 @@ include(FetchContent)
 FetchContent_Declare(
 	eigen
 	GIT_REPOSITORY https://github.com/bolderflight/eigen.git
-	GIT_TAG v3.0.1
+	GIT_TAG v3.0.2
 )
 FetchContent_MakeAvailable(eigen)
 # Add the library target
