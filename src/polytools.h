@@ -23,67 +23,69 @@
 * IN THE SOFTWARE.
 */
 
-#ifndef INCLUDE_POLYTOOLS_POLYTOOLS_H_
-#define INCLUDE_POLYTOOLS_POLYTOOLS_H_
+#ifndef SRC_POLYTOOLS_H_
+#define SRC_POLYTOOLS_H_
 
-#include <span>
-#include <vector>
+#if defined(ARDUINO)
+#include <Arduino.h>
+#endif
+#include <array>
 #include <type_traits>
-#include "Eigen/Core"
+#include "eigen.h"  // NOLINT
 #include "Eigen/Dense"
 #include "Eigen/QR"
 
-
 namespace bfs {
-
 /*
-* Fits a polynomial of degree, deg, to the independent, x, and
+* Fits a polynomial of degree, DEG, to the independent, x, and
 * dependent, y, data. Returns the polynomial coefficients in
 * order of descending power.
 */
-template<typename T>
-std::vector<T> polyfit(std::span<const T> x,
-                       std::span<const T> y,
-                       const int deg) {
+template<std::size_t DEG, typename T, std::size_t ARRAY_LEN>
+std::array<T, DEG + 1> polyfit(const std::array<T, ARRAY_LEN> &x,
+                               const std::array<T, ARRAY_LEN> &y) {
+  std::array<T, DEG + 1> p;
   static_assert(std::is_floating_point<T>::value,
-              "Only floating point types supported");
-  std::vector<T> ret;
-  if ((deg < 0) ||
-     (x.size() != y.size()) ||
-     (x.size() == 0)) {
-    return ret;
-  }
-  ret.resize(deg + 1);
-  Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> a(x.size(), deg + 1);
-  Eigen::Matrix<T, Eigen::Dynamic, 1> b(x.size());
-  Eigen::Matrix<T, Eigen::Dynamic, 1> p(deg + 1);
-  for (std::size_t i = 0; i < x.size(); i++) {
-    for (std::size_t j = 0; j <= deg; j++) {
+                "Only floating point types supported");
+  static_assert(ARRAY_LEN > 0,
+                "X, Y data length must be greater than 0");
+  static_assert(DEG > 0,
+                "Polynomial degree must be greater than 0");
+  Eigen::Matrix<T, ARRAY_LEN, DEG + 1> a;
+  Eigen::Matrix<T, ARRAY_LEN, 1> b;
+  Eigen::Matrix<T, DEG + 1, 1> k;
+  for (std::size_t i = 0; i < ARRAY_LEN; i++) {
+    for (std::size_t j = 0; j <= DEG; j++) {
       a(i, j) = std::pow(x[i], j);
     }
     b(i) = y[i];
   }
-  p = a.householderQr().solve(b);
-  for (std::size_t i = (deg + 1), j = 0; i > 0; i--, j++) {
-    ret[j] = p(i - 1);
+  k = a.householderQr().solve(b);
+  for (std::size_t i = (DEG + 1), j = 0; i > 0; i--, j++) {
+    p[j] = k(i - 1);
   }
-  return ret;
+  return p;
 }
-/* Evaluates the coefficients p at point x */
+/* Evaluates the coefficients p at point x, C-style array input */
 template<typename T>
-T polyval(std::span<const T> p, const T x) {
+T polyval(T const * const p, const std::size_t len, const T x) {
   static_assert(std::is_floating_point<T>::value,
                 "Only floating point types supported");
   T y = 0;
-  if (p.size() > 0) {
+  if (len > 0) {
     y = p[0];
-    for (std::size_t i = 1; i < p.size(); i++) {
+    for (std::size_t i = 1; i < len; i++) {
       y = y * x + p[i];
     }
   }
   return y;
 }
+/* Evaluates the coefficients p at point x, std::array input */
+template<typename T, std::size_t N>
+T polyval(const std::array<T, N> &p, const T x) {
+  return polyval<T>(p.data(), p.size(), x);
+}
 
 }  // namespace bfs
 
-#endif  // INCLUDE_POLYTOOLS_POLYTOOLS_H_
+#endif  // SRC_POLYTOOLS_H_
