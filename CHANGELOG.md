@@ -1,5 +1,8 @@
 # Changelog
 
+## v4.0.1
+- Updated minimum CMake version to 3.14 to support FetchContent_MakeAvailable
+
 ## v4.0.0
 - Updated directory structure to support Arduino in addition to CMake builds
 - Added an Arduino example
