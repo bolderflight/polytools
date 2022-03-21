@@ -2,7 +2,7 @@
 * Brian R Taylor
 * brian.taylor@bolderflight.com
 * 
-* Copyright (c) 2021 Bolder Flight Systems Inc
+* Copyright (c) 2022 Bolder Flight Systems Inc
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the “Software”), to
@@ -23,8 +23,8 @@
 * IN THE SOFTWARE.
 */
 
-#ifndef SRC_POLYTOOLS_H_
-#define SRC_POLYTOOLS_H_
+#ifndef POLYTOOLS_SRC_POLYTOOLS_H_  // NOLINT
+#define POLYTOOLS_SRC_POLYTOOLS_H_
 
 #if defined(ARDUINO)
 #include <Arduino.h>
@@ -88,4 +88,4 @@ T polyval(const std::array<T, N> &p, const T x) {
 
 }  // namespace bfs
 
-#endif  // SRC_POLYTOOLS_H_
+#endif  // POLYTOOLS_SRC_POLYTOOLS_H_ NOLINT
