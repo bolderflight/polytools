@@ -1,5 +1,8 @@
 # Changelog
 
+## v4.1.0
+- Added linear map function
+
 ## v4.0.3
 - Updated google test version
 

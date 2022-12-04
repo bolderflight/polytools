@@ -36,6 +36,19 @@
 #include "Eigen/QR"
 
 namespace bfs {
+
+/* Linear polyfit */
+template<typename T>
+constexpr std::array<T, 2> linearmap(const std::array<T, 2> &x,
+                                     const std::array<T, 2> &y) {
+  std::array<T, 2> p;
+  static_assert(std::is_floating_point<T>::value,
+                "Only floating point types supported");
+  /* Compute scale factor and bias */
+  p[0] = (y[1] - y[0]) / (x[1] - x[0]);
+  p[1] = y[0] - p[0] * x[0];
+  return p;
+}
 /*
 * Fits a polynomial of degree, DEG, to the independent, x, and
 * dependent, y, data. Returns the polynomial coefficients in
@@ -68,7 +81,7 @@ std::array<T, DEG + 1> polyfit(const std::array<T, ARRAY_LEN> &x,
 }
 /* Evaluates the coefficients p at point x, C-style array input */
 template<typename T>
-T polyval(T const * const p, const std::size_t len, const T x) {
+constexpr T polyval(T const * const p, const std::size_t len, const T x) {
   static_assert(std::is_floating_point<T>::value,
                 "Only floating point types supported");
   T y = 0;
@@ -82,7 +95,7 @@ T polyval(T const * const p, const std::size_t len, const T x) {
 }
 /* Evaluates the coefficients p at point x, std::array input */
 template<typename T, std::size_t N>
-T polyval(const std::array<T, N> &p, const T x) {
+constexpr T polyval(const std::array<T, N> &p, const T x) {
   return polyval<T>(p.data(), p.size(), x);
 }
 

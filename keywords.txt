@@ -1,2 +1,3 @@
 polyfit	KEYWORD2
 polyval	KEYWORD2
+linearmap	KEYWORD2

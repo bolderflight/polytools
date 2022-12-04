@@ -40,6 +40,15 @@ This library is within the namespace *bfs*.
 
 # Functions
 
+**std::array<T, 2> linearmap(const std::array<T, 2> &x, const std::array<T, 2> &y)** linearmap is templated with respect to the type - template deduction should recognize the type. Linearmap returns the coefficients of a polynomial mapping the input range x to the output range y. The coefficients are given in order of descending power.
+
+```C++
+/* Find polynomial coefficients (i.e. scale factor and bias) to map value in the range of [-2000, 2000] to [0, 16777215] */
+std::array<float, 2> x = {-2000, 2000};
+std::array<float, 2> y = {0, 16777215};
+std::array<float, 2> p = bfs::linearmap(x, y);
+```
+
 **std::array<T, DEG + 1> polyfit(const std::array<T, ARRAY_LEN> &x, const std::array<T, ARRAY_LEN> &y** polyfit is templated with respect to the degree of the polynomial, the type, and the length of the input data; however, template deduction should recognize the type and input data length. Polyfit returns the coefficients for a polynomial of degree, *DEG*, that best fit the independent, *x*, and dependent, *y*, data. The coefficients are given in order of descending power and the length of the returned polynomial coefficients is DEG + 1. High order polynomials do not necessarily lead to a better fit and may be oscillatory, leading to a worse solution. Check the returned polynomial values and be cautious if coefficients are nearly zero.
 
 ```C++
