@@ -1,1 +1,11 @@
-{"image":"mcr.microsoft.com/devcontainers/universal:2"}
+{"image":"mcr.microsoft.com/devcontainers/universal:2",
+"customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cmake-tools"
+      ]
+    }
+  },
+  "postCreateCommand": ".devcontainer/post-create.sh"
+}
