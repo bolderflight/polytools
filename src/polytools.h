@@ -2,7 +2,7 @@
 * Brian R Taylor
 * brian.taylor@bolderflight.com
 * 
-* Copyright (c) 2022 Bolder Flight Systems Inc
+* Copyright (c) 2024 Bolder Flight Systems Inc
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the “Software”), to
@@ -36,11 +36,10 @@
 #include "Eigen/QR"
 
 namespace bfs {
-
 /* Linear polyfit */
 template<typename T>
 constexpr std::array<T, 2> linearmap(const std::array<T, 2> &x,
-                                     const std::array<T, 2> &y) {
+                                     const std::array<T, 2> &y) { // NOLINT
   std::array<T, 2> p;
   static_assert(std::is_floating_point<T>::value,
                 "Only floating point types supported");
@@ -56,7 +55,7 @@ constexpr std::array<T, 2> linearmap(const std::array<T, 2> &x,
 */
 template<std::size_t DEG, typename T, std::size_t ARRAY_LEN>
 std::array<T, DEG + 1> polyfit(const std::array<T, ARRAY_LEN> &x,
-                               const std::array<T, ARRAY_LEN> &y) {
+                               const std::array<T, ARRAY_LEN> &y) { // NOLINT
   std::array<T, DEG + 1> p;
   static_assert(std::is_floating_point<T>::value,
                 "Only floating point types supported");
