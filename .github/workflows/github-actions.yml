@@ -1,0 +1,27 @@
+on:
+  push:
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+    - run: pip install cpplint
+    - run: |
+        cpplint --verbose=0 src/polytools.h
+  build-and-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build code
+      run: |
+        mkdir build
+        cd build
+        cmake ..
+        make
+    - name: Run tests
+      run: |
+        cd build
+        ./polytools_test
